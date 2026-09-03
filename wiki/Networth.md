@@ -2,7 +2,7 @@
 
 The bot looks up a player's SkyBlock networth from either side of the bridge.
 
-```
+```text
 !nw Notch
 ```
 
@@ -11,7 +11,7 @@ same command.
 
 There is also a slash command:
 
-```
+```text
 /networth [username]
 ```
 

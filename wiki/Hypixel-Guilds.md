@@ -29,7 +29,7 @@ repair a broken registry — which is why Discord comes up even when no Minecraf
 
 ## Adding one
 
-```
+```text
 /guilds add key:sb name:SkyBlock Guild tag:SB account:you@example.com
 ```
 
@@ -48,7 +48,7 @@ Once signed in, the account connects on its own within about ten seconds. `/ping
 Management commands (`/invite`, `/kick`, `/promote`, `/demote`, `/send`, `/login`) take an optional `guild`.
 Leave it out and they act on the **default** guild:
 
-```
+```text
 /guilds default guild:sb
 ```
 
@@ -58,7 +58,7 @@ guild, because it runs arbitrary commands as a Minecraft account.
 
 ## Editing one
 
-```
+```text
 /guilds edit guild:sb name:SkyBlock tag:SB color:#2ECC71
 /guilds edit guild:sb logchannel:#sb-log auditchannel:#sb-audit
 /guilds edit guild:sb officerchannel:#officer-chat
@@ -81,7 +81,7 @@ its cached token. It is the right way to take a guild offline for a while.
 
 ## Removing one
 
-```
+```text
 /guilds remove guild:sb
 ```
 
@@ -93,7 +93,7 @@ need a fresh sign-in.
 
 ## Signing in again
 
-```
+```text
 /guilds auth guild:sb
 ```
 
@@ -102,7 +102,7 @@ Repeats the device-code flow for a guild whose token has expired or been revoked
 
 ## Listing them
 
-```
+```text
 /guilds list
 ```
 

@@ -34,7 +34,7 @@ nothing to tell apart.
 
 If more than one guild is bridged, start a message with a guild's tag to reach only that guild:
 
-```
+```text
 !sb hey
 ```
 
@@ -45,7 +45,7 @@ reactions mean.
 
 A couple of things are answered rather than relayed. Type them in the bridge channel or in guild chat:
 
-```
+```text
 !nw Notch
 ```
 

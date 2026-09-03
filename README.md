@@ -84,11 +84,11 @@ for the same material split by audience, and the [change log](CHANGELOG.md) for 
    MINECRAFT_USERNAME=you@example.com
    ```
 
-   | Variable             | Description                                                                                          |
-      |----------------------|------------------------------------------------------------------------------------------------------|
-   | `DISCORD_TOKEN`      | Bot token from the Discord Developer Portal                                                          |
-   | `DISCORD_CHANNEL_ID` | The bridge channel — the one channel wired to guild chat                                             |
-   | `LOG_CHANNEL`        | Where connection notices and warnings go. A Hypixel guild can override it with its own channel        |
+   | Variable             | Description                                                                                            |
+   |----------------------|--------------------------------------------------------------------------------------------------------|
+   | `DISCORD_TOKEN`      | Bot token from the Discord Developer Portal                                                            |
+   | `DISCORD_CHANNEL_ID` | The bridge channel — the one channel wired to guild chat                                               |
+   | `LOG_CHANNEL`        | Where connection notices and warnings go. A Hypixel guild can override it with its own channel         |
    | `MINECRAFT_USERNAME` | Microsoft account email for the first Hypixel guild. **Ignored once `guildsConfig.json` exists**       |
    | `DISCORD_GUILD_ID`   | *Optional.* The only Discord server the bot accepts commands from. Defaults to the bridge channel's server |
 
@@ -104,6 +104,16 @@ for the same material split by audience, and the [change log](CHANGELOG.md) for 
    ```bash
    npm start
    ```
+
+   Or with Docker Swarm (after adjusting the NFS `addr` / `device` in `docker-compose.yml`):
+
+   ```bash
+   docker build -t tribridge:latest .
+   docker stack deploy -c docker-compose.yml tribridge
+   ```
+
+   Config files and `.minecraft-auth/` live on the NFS volume and stay editable on the host. See
+   [Installation](https://github.com/Trilleo/TriBridge/wiki/Installation).
 
    On a fresh install the account in `MINECRAFT_USERNAME` is registered as the first Hypixel guild and a
    Microsoft device-code flow opens in the console. Tokens are cached in `.minecraft-auth/`, one entry per

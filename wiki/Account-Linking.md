@@ -2,7 +2,7 @@
 
 Linking tells the bot which Minecraft account is yours. It takes one command:
 
-```
+```text
 /link Notch
 ```
 
@@ -34,7 +34,7 @@ when a roster came back cleanly and your name was not on it.
 
 ## Undoing it
 
-```
+```text
 /unlink
 ```
 

@@ -1,6 +1,6 @@
 # Feature requests
 
-```
+```text
 /request
 ```
 

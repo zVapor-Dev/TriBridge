@@ -1,7 +1,9 @@
 # Config files
 
 Everything TriBridge remembers lives in the project root, next to the repository. All of it is **gitignored**,
-so a `git pull` never touches it and nothing secret can be committed by accident.
+so a `git pull` never touches it and nothing secret can be committed by accident. Under Docker Swarm the same
+files live on the NFS volume mounted at `/data` (symlinked into the app directory) — edit them on the host
+export, not inside the container.
 
 Each file is created on demand the first time it is needed. A missing file is not an error — it means the
 feature has not been configured yet.

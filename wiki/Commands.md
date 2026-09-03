@@ -11,7 +11,7 @@ Discord, one page per category.
 
 Not slash commands. Type these in the bridge channel **or** in guild chat.
 
-```
+```text
 !nw <username>       — that player's SkyBlock networth
 !networth <username> — the same command
 ```
@@ -27,7 +27,7 @@ Also typed rather than slashed: **[guild tags](Guild-Tags)**. `!sb hey` sends to
 | `/help`                | Browse every command by category, with ◀ / ▶ buttons                        |
 | `/ping`                | Discord latency, roundtrip, and each guild's Minecraft connection status    |
 | `/online [guild]`      | Who is online in every guild, or one                                        |
-| `/networth [username]` | A player's SkyBlock networth. No username uses your [link](Account-Linking) |
+| `/networth [username]` | A player's SkyBlock networth. No username uses your [account link](Account-Linking) |
 
 `/ping` has no `guild` option on purpose: it is a status readout, so it always covers everything the bot is
 responsible for. `/help`'s buttons stop working after five minutes — run it again.

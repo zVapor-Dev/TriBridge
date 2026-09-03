@@ -66,7 +66,7 @@ install with `npm install --omit=dev`.
 
 7. **Set the admin roles.**
 
-   ```
+   ```text
    /adminrole add role:@Staff
    ```
 
@@ -75,7 +75,7 @@ install with `npm install --omit=dev`.
 
 ## Checking it worked
 
-```
+```text
 /ping
 ```
 
@@ -91,7 +91,7 @@ other.
 
 Everything after the first guild is done from Discord, not from the `.env`:
 
-```
+```text
 /guilds add key:sb name:SkyBlock Guild tag:SB account:you@example.com
 ```
 
@@ -119,6 +119,27 @@ actually holds the Discord and Hypixel connections.
 
 The bot reconnects to Hypixel on its own ([Reconnection](Reconnection)); it does not restart *itself* if the
 Node process dies, which is what the supervisor is for.
+
+## Docker (Swarm)
+
+`docker-compose.yml` is written for **Docker Swarm**, not a throwaway local stack. TriBridge has no database,
+so the stack is a single `app` service on the external `backend` network. Config files and `.minecraft-auth/`
+sit on an **NFS volume** so they stay editable on the Raspberry Pi host.
+
+1. Set the NFS `addr` and `device` in `docker-compose.yml` to your export (default placeholders are
+   `192.168.1.1` and `/export/docker/tribridge`).
+2. Put a `.env` on that export (or export the same variables when you deploy). The entrypoint also accepts a
+   `.env` living on the volume.
+3. Build and deploy:
+
+   ```bash
+   docker build -t tribridge:latest .
+   docker stack deploy -c docker-compose.yml tribridge
+   ```
+
+`docker stack deploy` does not build images — build (or pull) `tribridge:latest` first. Device-code sign-in
+still works through Discord (`/guilds add|auth`); the console path is only needed if you watch container
+logs during a first-time seed from `MINECRAFT_USERNAME`.
 
 ## Next
 

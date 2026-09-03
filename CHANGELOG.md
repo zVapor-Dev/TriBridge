@@ -8,56 +8,56 @@
 
 + Added an **officer chat bridge**: Hypixel officer chat can be relayed into a Discord channel, and anything
   typed there is sent back into officer chat in-game.
-    + Off by default. Point a guild at a channel with `/guilds edit guild:sb officerchannel:#officer-chat`,
+  + Off by default. Point a guild at a channel with `/guilds edit guild:sb officerchannel:#officer-chat`,
       and switch it back off with `/guilds edit guild:sb clear:Officer channel`.
-    + **Several guilds can share one officer channel**, exactly as they share the bridge channel. Point them
+  + **Several guilds can share one officer channel**, exactly as they share the bridge channel. Point them
       all at the same channel and every guild's officer chat arrives there, tagged and colour-coded, with
       one place for the officers to talk instead of one channel each.
-    + Replies are routed the same way bridge messages are: `!sb message` reaches only the guild tagged `SB`,
+  + Replies are routed the same way bridge messages are: `!sb message` reaches only the guild tagged `SB`,
       and an untagged message reaches every guild on the channel. A tag belonging to a guild that does not
       use that channel is treated as unknown — it gets a ❓ and is still delivered as typed, rather than
       becoming a way to speak into a guild the channel was never wired to. `!!` sends a literal `!`.
-    + A reply that reached nobody — every guild it was aimed at is offline or disabled — gets a 📡, so it is
+  + A reply that reached nobody — every guild it was aimed at is offline or disabled — gets a 📡, so it is
       never silently dropped.
-    + ⚠️ The channel is **two-way**, so everyone who can post in it is speaking in officer chat in-game.
+  + ⚠️ The channel is **two-way**, so everyone who can post in it is speaking in officer chat in-game.
       Restrict it with Discord's own channel permissions — the bot deliberately adds no second check on top,
       because a message being silently swallowed is worse than one that was never allowed to be typed.
-    + The bot's Minecraft account needs a guild rank that can both read and send officer chat. Hypixel gives
+  + The bot's Minecraft account needs a guild rank that can both read and send officer chat. Hypixel gives
       no error for either, so without the rank the channel simply shows nothing, or silently drops replies.
-    + Linked accounts are used for the name officer chat sees; everyone else appears under their Discord
+  + Linked accounts are used for the name officer chat sees; everyone else appears under their Discord
       name. A global profile change never applies here — a channel that exists to record what officers said
       is the last place to relabel who said it.
-    + Officer chat never touches the main bridge channel, and the bot's chat commands such as `!nw` are not
+  + Officer chat never touches the main bridge channel, and the bot's chat commands such as `!nw` are not
       answered in it.
 + Officer chat can also be **shared between guilds** in-game, into each other's officer chat, with
   `/guilds edit guild:sb crossbridgeofficer:True`.
-    + Independent of `crossbridge`: officers can be put in touch with another guild's officers without
+  + Independent of `crossbridge`: officers can be put in touch with another guild's officers without
       pooling everybody's ordinary guild chat.
-    + Symmetric like `crossbridge` — a guild that does not share its own officer chat does not receive
+  + Symmetric like `crossbridge` — a guild that does not share its own officer chat does not receive
       anyone else's.
-    + Forwarded lines arrive tagged with the guild they came from, `[SB] Notch: hello`, as guild chat does.
-    + Note this roughly doubles how much a guild's account says in-game if ordinary sharing is on too. That
+  + Forwarded lines arrive tagged with the guild they came from, `[SB] Notch: hello`, as guild chat does.
+  + Note this roughly doubles how much a guild's account says in-game if ordinary sharing is on too. That
       rate is what keeps accounts out of Hypixel's spam filter, so switch it on where the officer channels
       are actually busy, not everywhere.
 + Added **guild-to-guild bridging**: chat in one Hypixel guild can now be shared straight into the other
   bridged guilds, so members of different guilds can talk to each other in-game without anyone having to
   watch Discord.
-    + Off by default and turned on per guild with `/guilds edit guild:sb crossbridge:True`. It takes at
+  + Off by default and turned on per guild with `/guilds edit guild:sb crossbridge:True`. It takes at
       least two guilds with it on before anything is shared.
-    + The switch covers both directions: a guild that is not sharing its own chat does not receive anyone
+  + The switch covers both directions: a guild that is not sharing its own chat does not receive anyone
       else's either.
-    + Forwarded messages arrive tagged with the guild they came from — `[SB] Notch: hello` — so it is
+  + Forwarded messages arrive tagged with the guild they came from — `[SB] Notch: hello` — so it is
       always clear who is talking and where from.
-    + Only player chat is shared. Join and leave announcements stay in their own guild.
+  + Only player chat is shared. Join and leave announcements stay in their own guild.
 + The bot can now bridge **several Hypixel guilds at once**, each with its own Minecraft account, through
   the same Discord channel.
-    + Start a message with `!tag` to send it to one guild only — `!sb hey` reaches just the guild tagged
+  + Start a message with `!tag` to send it to one guild only — `!sb hey` reaches just the guild tagged
       `SB`. A message with no tag goes to every guild, as it always did.
-    + A tag nobody recognises is never swallowed: the message is still delivered everywhere, exactly as
+  + A tag nobody recognises is never swallowed: the message is still delivered everywhere, exactly as
       typed, and gets a ❓ reaction so a typo is visible. This needs the **Add Reactions** permission in
       the bridge channel.
-    + `!!` sends a literal `!` — `!!sb hi` reaches guild chat as `!sb hi`.
-    + Guild chat coming back into Discord is colour-coded per guild and carries the guild's tag next to the
+  + `!!` sends a literal `!` — `!!sb hi` reaches guild chat as `!sb hi`.
+  + Guild chat coming back into Discord is colour-coded per guild and carries the guild's tag next to the
       player's name, so it is obvious which guild said what.
 + With only one guild configured, nothing changes: no tags on incoming messages, the original green, and
   every message goes to the one guild whatever you type.
@@ -65,41 +65,41 @@
 #### Management
 
 + Added `/guilds` to manage the bridged Hypixel guilds, admin-only and private.
-    + `/guilds add` registers a guild and signs its Minecraft account in **from Discord** — the Microsoft
+  + `/guilds add` registers a guild and signs its Minecraft account in **from Discord** — the Microsoft
       code arrives in your own private reply, so nobody needs console access to add an account. `/guilds auth`
       repeats the sign-in when a token expires.
-    + `/guilds list`, `edit`, `remove` and `default` cover the rest. Account addresses are masked in every
+  + `/guilds list`, `edit`, `remove` and `default` cover the rest. Account addresses are masked in every
       reply.
-    + Each guild can have its own name, chat tag, colour, log channel and audit channel, and can be
+  + Each guild can have its own name, chat tag, colour, log channel and audit channel, and can be
       switched off without being removed.
 + `/invite`, `/kick`, `/promote`, `/demote`, `/send` and `/login` take an optional `guild` to choose which
   guild they act on, with autocomplete. Leave it out and they use the default guild.
-    + `/send` never fans out — it always targets exactly one guild, because it runs arbitrary commands as
+  + `/send` never fans out — it always targets exactly one guild, because it runs arbitrary commands as
       the Minecraft account.
-    + `/login` on its own reconnects **every** disconnected guild, since after an outage that is almost
+  + `/login` on its own reconnects **every** disconnected guild, since after an outage that is almost
       always what was meant.
 + `/auditchannel set` and `/auditchannel clear` take an optional `guild`, so one guild's admin actions can
   be recorded somewhere different. `/auditchannel show` lists the default and every override.
 + `/guilds edit` takes a `crossbridge` option to switch guild-to-guild bridging on or off for one guild,
   and warns when it is the only guild sharing so far. `/guilds list` marks the sharing guilds with 🔁.
 + `/guilds edit` takes `officerchannel` and `crossbridgeofficer` for the officer bridge.
-    + Naming a channel another guild already uses is allowed and says so, since sharing one officer channel
+  + Naming a channel another guild already uses is allowed and says so, since sharing one officer channel
       between guilds is usually what is wanted.
-    + `/guilds list` shows each guild's officer channel and marks the ones sharing officer chat with 🛡️.
+  + `/guilds list` shows each guild's officer channel and marks the ones sharing officer chat with 🛡️.
 
 #### Information
 
 + Added **SkyBlock networth lookups**. Type `!nw <username>` in guild chat or in the bridge channel and the
   bot answers with that player's networth.
-    + The answer goes back into the guild chat that asked *and* to Discord as an embed with the breakdown by
+  + The answer goes back into the guild chat that asked *and* to Discord as an embed with the breakdown by
       inventory, purse and bank.
-    + It reports the player's richest profile, and the total counts everything — cosmetics and soulbound
+  + It reports the player's richest profile, and the total counts everything — cosmetics and soulbound
       items included. The unsoulbound total is shown next to it.
-    + Someone with their inventory API turned off is flagged with `(API off)`, because their number is an
+  + Someone with their inventory API turned off is flagged with `(API off)`, because their number is an
       undercount rather than a low score.
-    + Also available as `/networth [username]`, which uses your own linked account when you leave the name
+  + Also available as `/networth [username]`, which uses your own linked account when you leave the name
       out.
-    + Answers are remembered for ten minutes, so asking about the same player repeatedly costs nothing.
+  + Answers are remembered for ten minutes, so asking about the same player repeatedly costs nothing.
 + Networth figures come from SkyCrypt, which means a player SkyCrypt has never loaded cannot be looked up
   yet. That case says so, and links their page so it can be loaded once.
 + `/online` now covers every guild at once, one section per guild in its own colour. Name a `guild` to see
@@ -154,6 +154,17 @@
 
 #### Core
 
++ Added Docker support for running TriBridge as a Swarm service.
+  + `Dockerfile` builds a Node 22 image that runs `node src/index.js` (no build step).
+  + The image is multi-stage: production `node_modules` are installed in a throwaway stage,
+      then the runtime layer runs `apk upgrade` and drops the unused npm/yarn toolchains so
+      stock `node:22-alpine` CRITICAL/HIGH findings (OpenSSL + bundled package-manager deps)
+      are not shipped.
+  + `docker-compose.yml` is Swarm-oriented: one `app` service on the external `backend`
+      network, no embedded database (TriBridge does not use one), and an NFS volume for
+      config files and `.minecraft-auth/` so they stay editable on the Raspberry Pi host.
+  + An entrypoint symlinks those files from `/data` into the app directory where the bot
+      already reads and writes them.
 + `bridge.mcBot` and its connection flags are replaced by a registry of one bot record per Hypixel guild.
   Minecraft event handlers identify their guild from the bot they were called with.
 + The collector idiom that was copied into seven commands is now `utils/queryGuild.js`, serialised per bot
@@ -182,22 +193,22 @@
 #### Documentation
 
 + Added a `docs/` folder holding the project's reference documentation.
-    + `docs/FEATURES.md` is the canonical description of every feature — what it does, how it is switched on,
+  + `docs/FEATURES.md` is the canonical description of every feature — what it does, how it is switched on,
       and the limitations worth knowing before someone hits them.
-    + `docs/RELEASING.md` documents the two changelogs and the release and deploy process,
+  + `docs/RELEASING.md` documents the two changelogs and the release and deploy process,
       `docs/COMMIT_STRUCTURE.md` the commit convention, and `docs/WIKI.md` how the wiki is written and
       published.
 + Added a `wiki/` folder holding the source of the GitHub wiki.
-    + `.github/workflows/wiki.yml` publishes it automatically: a push to `master` touching `wiki/` syncs the
+  + `.github/workflows/wiki.yml` publishes it automatically: a push to `master` touching `wiki/` syncs the
       folder into the wiki's own repository, so a page merged with the code is live with it and nobody has to
       remember a publish step. It can also be run by hand from the Actions tab.
-    + It authenticates with the automatic `GITHUB_TOKEN`, so there is nothing to configure — but the wiki has
+  + It authenticates with the automatic `GITHUB_TOKEN`, so there is nothing to configure — but the wiki has
       to be initialised once through the web UI before the first run can succeed.
-    + The pages are split by audience: **Using the bridge** for guild members in the Discord server, **Running
+  + The pages are split by audience: **Using the bridge** for guild members in the Discord server, **Running
       the bot** for whoever hosts it, plus help and development sections.
-    + `Commands`, `Config files` and `Permissions` are exhaustive lists, so a missing entry is a visible gap
+  + `Commands`, `Config files` and `Permissions` are exhaustive lists, so a missing entry is a visible gap
       rather than a thin page.
-    + `Architecture` is the long-form version of the architecture notes in `CLAUDE.md`.
+  + `Architecture` is the long-form version of the architecture notes in `CLAUDE.md`.
 + The README now carries a one-line summary per feature and links out, instead of holding the whole manual;
   everything it used to explain in full moved to `docs/FEATURES.md` and the wiki.
 + `CLAUDE.md`'s after-every-change checklist grew from three steps to six, covering `docs/FEATURES.md`, the
@@ -208,7 +219,7 @@
 + Added `npm start` and `npm run dev` as the supported ways to launch the bot. `npm start` runs it as before;
   `npm run dev` restarts it automatically whenever a source file or the `.env` changes, which is what to use
   while working on it. `node src/index.js` still works exactly as it did.
-    + `nodemon` is the only development dependency, and nothing needs it to *run* the bot — a deployment can
+  + `nodemon` is the only development dependency, and nothing needs it to *run* the bot — a deployment can
       still install with `npm install --omit=dev`.
 + Added `.env.example`, a template holding the four required variables, to copy to `.env` on a fresh install
   rather than typing them out.
@@ -219,7 +230,7 @@
 + The source is now formatted with Prettier's default style — two-space indent, double quotes, trailing
   commas, 80 columns — in place of the previous four-space, single-quote layout. Nothing the bot does
   changed; it is whitespace and quote marks across all 85 files.
-    + `.prettierrc` records the settings, so an editor set to format on save now agrees with the repository
+  + `.prettierrc` records the settings, so an editor set to format on save now agrees with the repository
       instead of reformatting every file it opens.
 
 ## Version 1.2.1
@@ -230,11 +241,11 @@
 
 + A global profile change can now be limited to one side of the bridge. Two switches on the panel turn the
   disguise off for **Discord → Minecraft** and **Minecraft → Discord** independently.
-    + With Discord → Minecraft off, messages sent in Discord are still reposted under the target, but the copy that
+  + With Discord → Minecraft off, messages sent in Discord are still reposted under the target, but the copy that
       reaches guild chat is attributed to whoever really sent it — their linked Minecraft name, or their Discord
       name if they have none.
-    + With Minecraft → Discord off, guild chat arriving in the bridge channel keeps the real player's name and head.
-    + Both switches are remembered between runs and can be flipped while an effect is running, taking effect on the
+  + With Minecraft → Discord off, guild chat arriving in the bridge channel keeps the real player's name and head.
+  + Both switches are remembered between runs and can be flipped while an effect is running, taking effect on the
       next message. An effect started with a side switched off says so in the audit channel.
 
 ## Version 1.2.0
@@ -247,25 +258,25 @@
   shows what is running, who started it, when it ends and how the feature is scoped.
 + Added the first function, **Global Profile Change**: pick a member and a duration, and for that long every
   message sent in the server is reposted wearing that member's name and avatar.
-    + The effect carries across the bridge in both directions — the guild chat copy is attributed to the target
+  + The effect carries across the bridge in both directions — the guild chat copy is attributed to the target
       (their Minecraft name if they have one linked), and guild chat coming back into Discord is shown under the
       target as well. Guild join and leave announcements are deliberately left alone.
-    + Durations can be picked from a list (5 minutes up to 24 hours), typed in freehand (`90m`, `2h30m`, `3d`), or
+  + Durations can be picked from a list (5 minutes up to 24 hours), typed in freehand (`90m`, `2h30m`, `3d`), or
       set to run until somebody stops it.
-    + The panel's **Stop effect** button ends it immediately, and everything is back to normal on the next message.
-    + An effect that is still running when the bot restarts is picked back up, and one that ran out while the bot
+  + The panel's **Stop effect** button ends it immediately, and everything is back to normal on the next message.
+  + An effect that is still running when the bot restarts is picked back up, and one that ran out while the bot
       was offline is cleared and reported.
 + Added a test system so the effect can be rehearsed before it is turned loose on the server.
-    + In test mode only listed testers, posting in listed channels, are affected — everybody else is untouched. Over
+  + In test mode only listed testers, posting in listed channels, are affected — everybody else is untouched. Over
       the bridge, only guild chat from a tester's own linked Minecraft account is rewritten.
-    + In live mode everybody is affected, everywhere except a list of channels you exclude.
-    + Testers and both channel lists are set from the panel and are remembered between runs.
+  + In live mode everybody is affected, everywhere except a list of channels you exclude.
+  + Testers and both channel lists are set from the panel and are remembered between runs.
 + Added `/auditchannel set <channel>`, `/auditchannel show` and `/auditchannel clear` for admins to choose where
   admin actions are recorded.
-    + Reposting deletes the original message, so the audit line is the only record of who really sent it. Every
+  + Reposting deletes the original message, so the audit line is the only record of who really sent it. Every
       disguised message gets one, with a jump link to the repost, alongside an entry each time an effect starts or
       ends.
-    + The bot checks it can actually post there before accepting the channel. A missing or broken audit channel never
+  + The bot checks it can actually post there before accepting the channel. A missing or broken audit channel never
       stops the effect itself.
 
 ### Improvements
@@ -300,11 +311,11 @@
 
 + Linking a Minecraft account with `/link` now gives the member a role, and `/unlink` takes it back again.
 + Added `/linkrole set <role>`, `/linkrole show` and `/linkrole clear` for admins to choose that role.
-    + Setting a role immediately gives it to everybody who is already linked, including links made before this
+  + Setting a role immediately gives it to everybody who is already linked, including links made before this
       update, and reports how many members it reached.
-    + The bot refuses a role it cannot actually hand out — one above its own highest role, one managed by
+  + The bot refuses a role it cannot actually hand out — one above its own highest role, one managed by
       another integration, or any role at all while it is missing **Manage Roles**.
-    + Pointing `/linkrole` at a different role leaves the old one on members; remove it yourself if you no
+  + Pointing `/linkrole` at a different role leaves the old one on members; remove it yourself if you no
       longer want it. `/linkrole clear` likewise only stops handing the role out.
 + Link roles are re-checked every time the bot starts, so links made while it was offline and members who
   rejoined the server and lost their roles are caught up automatically.
@@ -327,10 +338,10 @@
 #### Core
 
 + The bot now only answers commands sent from the server it is set up for, and ignores them everywhere else.
-    + Previously, anyone who added the bot to a server of their own was an administrator there, and could use
+  + Previously, anyone who added the bot to a server of their own was an administrator there, and could use
       `/adminrole` to make themselves a bot admin over *your* guild — including `/send`, which runs any command
       as the bot's Minecraft account.
-    + The server is worked out from the bridge channel, so no configuration change is needed. Set the new
+  + The server is worked out from the bridge channel, so no configuration change is needed. Set the new
       optional `DISCORD_GUILD_ID` to override it.
 
 #### Management

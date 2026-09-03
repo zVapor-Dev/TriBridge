@@ -64,7 +64,7 @@ Config modules — `guilds`, `adminRoles`, `linkedAccounts`, `linkRole`, `auditC
 subdirectory name is treated as an event name and every file inside is invoked in sorted filename order with
 `(client, ...args)`:
 
-```
+```text
 src/events/discord/<eventName>/<NNNname>.js     → discordClient.on(eventName, ...)
 src/events/minecraft/<eventName>/<name>.js      → mcBot.on(eventName, ...)
 ```

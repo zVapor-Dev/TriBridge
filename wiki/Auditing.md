@@ -4,7 +4,7 @@ A [global profile change](Global-Profile-Change) deletes the original message an
 else's name, so **the real author is no longer visible on it**. The audit channel is where that information
 goes instead.
 
-```
+```text
 /auditchannel set channel:#audit-log
 ```
 
@@ -18,7 +18,7 @@ creates.
 
 ## Where it goes
 
-```
+```text
 /auditchannel set channel:#audit-log              — the default, for everything
 /auditchannel set channel:#sb-audit guild:sb      — one Hypixel guild's entries, elsewhere
 /auditchannel show                                — the default and every override

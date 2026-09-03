@@ -1,0 +1,11 @@
+node_modules
+.git
+.cursor
+.idea
+.env
+.minecraft-auth
+*Config.json
+wiki
+docs
+agent-transcripts
+*.md

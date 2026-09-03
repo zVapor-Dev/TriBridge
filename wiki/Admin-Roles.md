@@ -12,7 +12,7 @@ bot is concerned.
 
 ## Setting it up
 
-```
+```text
 /adminrole add role:@Staff
 /adminrole remove role:@Staff
 ```

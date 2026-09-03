@@ -1,6 +1,6 @@
 # Admin panel
 
-```
+```text
 /adminpanel
 ```
 

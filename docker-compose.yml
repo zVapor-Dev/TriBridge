@@ -1,0 +1,47 @@
+# Swarm stack compose for TriBridge.
+# Build the image first, then deploy:
+#   docker build -t tribridge:latest .
+#   docker stack deploy -c docker-compose.yml tribridge
+#
+# Adjust the NFS `addr` and `device` below to match the Raspberry Pi export.
+# Config files and `.minecraft-auth/` are editable on the host at that path.
+
+version: "3.8"
+
+services:
+  app:
+    image: tribridge:latest
+    build: .
+    command: node src/index.js
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DISCORD_CHANNEL_ID=${DISCORD_CHANNEL_ID}
+      - LOG_CHANNEL=${LOG_CHANNEL}
+      - MINECRAFT_USERNAME=${MINECRAFT_USERNAME}
+      - DISCORD_GUILD_ID=${DISCORD_GUILD_ID:-}
+      - NODE_ENV=production
+    volumes:
+      - config:/data
+    networks:
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+      update_config:
+        order: start-first
+        failure_action: rollback
+
+networks:
+  backend:
+    external: true
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.1.1,rw,nolock,soft,nfsvers=4
+      device: ":/export/docker/tribridge"

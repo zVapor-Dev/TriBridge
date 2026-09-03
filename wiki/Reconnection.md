@@ -45,7 +45,7 @@ guild, or to the console. Never to a shared channel — see [Hypixel guilds](Hyp
 
 ## Reconnecting by hand
 
-```
+```text
 /login
 ```
 
@@ -57,7 +57,7 @@ wait.
 
 ## Taking a guild offline on purpose
 
-```
+```text
 /guilds edit guild:sb enabled:False
 ```
 
@@ -66,7 +66,7 @@ way to park a guild — much better than letting it fail repeatedly.
 
 ## Checking the state
 
-```
+```text
 /ping
 ```
 

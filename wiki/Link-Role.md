@@ -3,7 +3,7 @@
 An optional Discord role handed out automatically to everyone with a
 [linked Minecraft account](Account-Linking).
 
-```
+```text
 /linkrole set role:@Verified
 /linkrole show
 /linkrole clear

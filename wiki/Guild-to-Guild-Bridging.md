@@ -8,7 +8,7 @@ in-game without anybody watching Discord.
 
 It is a per-guild flag, and it takes at least two:
 
-```
+```text
 /guilds edit guild:sb crossbridge:True
 /guilds edit guild:main crossbridge:True
 ```
@@ -18,7 +18,7 @@ guilds with 🔁.
 
 ## What it looks like in-game
 
-```
+```text
 Guild > [MVP+] TriBridgeBot: [SB] Notch: hello
 ```
 
@@ -62,7 +62,7 @@ the queue spaces packets out per account and why late lines are dropped instead 
 
 ## Turning it off
 
-```
+```text
 /guilds edit guild:sb crossbridge:False
 ```
 

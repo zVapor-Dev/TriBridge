@@ -144,7 +144,7 @@ option value.
 root, each subdirectory name is treated as an event name and every file inside is invoked
 in sorted filename order with `(client, ...args)`:
 
-```
+```text
 src/events/discord/<eventName>/<NNNname>.js     → discordClient.on(eventName, ...)
 src/events/minecraft/<eventName>/<name>.js      → mcBot.on(eventName, ...)
 ```
@@ -281,7 +281,8 @@ Global command propagation can take up to an hour on Discord's side. The diff co
 - **Routing Discord→Minecraft:** `routeMessage()` from `utils/chatRouting.js` decides which
   guilds a bridge message reaches (`!tag` for one, otherwise all). It is pure — test it there
   rather than through the handler. Pass `{ candidates }` when the channel serves only some guilds,
-  as the officer leg does; the tag lookup and the fallback both narrow to that set. Build the `/gc` command **once** and reuse it for every
+  as the officer leg does; the tag lookup and the fallback both narrow to that set. Build the `/gc`
+  command **once** and reuse it for every
   target: identical name plus identical body means identical truncation, so the 100-character
   budget stays deterministic. Hypixel's duplicate-message filter is per account, so identical
   text from several accounts is fine — don't "fix" it by varying the text per guild. `body` is

@@ -47,7 +47,7 @@ guilds within two seconds and drops the duplicate, so you get one embed rather t
 With more than one Hypixel guild registered, a message can be aimed at one of them by starting it with that
 guild's tag:
 
-```
+```text
 !sb hey
 ```
 
@@ -92,7 +92,7 @@ removing the guild and adding it again.
 
 ### Adding a guild
 
-```
+```text
 /guilds add key:sb name:SkyBlock Guild tag:SB account:you@example.com
 ```
 
@@ -121,7 +121,7 @@ ignored.
 
 Registered guilds share a Discord channel but not their guild chat, unless it is switched on per guild:
 
-```
+```text
 /guilds edit guild:sb crossbridge:True
 /guilds edit guild:main crossbridge:True
 ```
@@ -151,7 +151,7 @@ speaker rather than as something they said.
 Hypixel's officer chat is not part of the main bridge and never appears in the bridge channel. It gets its own
 channel, switched on by naming one:
 
-```
+```text
 /guilds edit guild:sb officerchannel:#officer-chat
 ```
 
@@ -194,7 +194,7 @@ uses behaves exactly as it did when that was the only option.
 
 Officer chat can also cross between guilds, into each other's officer chat:
 
-```
+```text
 /guilds edit guild:sb crossbridgeofficer:True
 /guilds edit guild:main crossbridgeofficer:True
 ```
@@ -216,7 +216,7 @@ Note this is separate from sharing a Discord channel. Two guilds can share one o
 Some things are asked for from either side of the bridge rather than through a slash command. Type them in
 guild chat or in the bridge channel:
 
-```
+```text
 !nw Notch
 ```
 

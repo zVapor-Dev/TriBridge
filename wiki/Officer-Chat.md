@@ -16,13 +16,13 @@ channel, and the bridge channel never reaches officer chat.
 
 Point a guild at a channel:
 
-```
+```text
 /guilds edit guild:sb officerchannel:#officer-chat
 ```
 
 The bot checks it can post there before saving. Switch it off again with:
 
-```
+```text
 /guilds edit guild:sb clear:Officer channel
 ```
 
@@ -33,7 +33,7 @@ feature off, rather than quietly sending its officer chat somewhere it was never
 
 Point several guilds at the same channel and they share it, exactly as they share the bridge channel:
 
-```
+```text
 /guilds edit guild:sb officerchannel:#officer-chat
 /guilds edit guild:main officerchannel:#officer-chat
 ```
@@ -61,7 +61,7 @@ with one guild registered — on a shared channel "which guild is this?" is a li
 
 Going the other way, a message typed in the channel reaches officer chat as:
 
-```
+```text
 Officer > [MVP+] TriBridgeBot: Notch: hello
 ```
 
@@ -73,7 +73,7 @@ place where who said something usually matters.
 
 [Guild tags](Guild-Tags) work here just as they do in the bridge channel:
 
-```
+```text
 !sb we should demote him
 ```
 
@@ -108,7 +108,7 @@ To start a message with a literal `!`, type it twice: `!!sb` comes out as `!sb`.
 Everything above is about Discord. Officer chat can *also* cross between the guilds in-game, into each
 other's officer chat, the same way [guild chat can](Guild-to-Guild-Bridging):
 
-```
+```text
 /guilds edit guild:sb crossbridgeofficer:True
 /guilds edit guild:main crossbridgeofficer:True
 ```

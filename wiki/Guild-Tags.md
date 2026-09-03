@@ -3,7 +3,7 @@
 When this server bridges more than one Hypixel guild, everything you type in the bridge channel goes to **all
 of them** by default. A tag on the front aims it at one.
 
-```
+```text
 !sb hey
 ```
 
