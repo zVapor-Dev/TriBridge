@@ -3,8 +3,8 @@
   "sessionId": "c3e26314-a553-42ef-9f80-d906805a3acc",
   "model": "cursor-grok-4.6-high",
   "startedAt": "2026-09-17T00:09:41.513Z",
-  "endedAt": "2026-10-12T13:22:18.981Z",
-  "durationMs": 2207557404,
+  "endedAt": "2026-10-12T14:11:55.309Z",
+  "durationMs": 2210533769,
   "status": "running",
   "tokens": {
     "total": 0,
@@ -16,18 +16,44 @@
   },
   "toolCalls": 0,
   "lines": {
-    "added": 2,
-    "removed": 2
+    "added": 555,
+    "removed": 227
   },
   "filesChanged": [
-    "BOT.md"
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "README.md",
+    "docs/FEATURES.md",
+    "docs/SHARED_DATABASE.md",
+    "package-lock.json",
+    "site/community/shared-database.mdx",
+    "site/tribridge/architecture.mdx",
+    "site/tribridge/auditing.mdx",
+    "site/tribridge/config-files.mdx",
+    "site/tribridge/configuration.mdx",
+    "site/tribridge/hypixel-guilds.mdx",
+    "site/tribridge/index.mdx",
+    "site/tribridge/installation.mdx",
+    "site/tribridge/updating.mdx",
+    "src/commands/management/auditchannel.js",
+    "src/commands/management/guilds.js",
+    "src/events/discord/interactionCreate/handlePanelButtons.js",
+    "src/events/minecraft/spawn/002probeHypixelGuildId.js",
+    "src/index.js",
+    "src/utils/auditChannel.js",
+    "src/utils/chatRouting.js",
+    "src/utils/configStore.js",
+    "src/utils/createMcBot.js",
+    "src/utils/db.js",
+    "src/utils/globalProfile.js",
+    "src/utils/guilds.js"
   ],
   "git": {
-    "branch": "feature/hypixel-api-link-remove-networth",
+    "branch": "feature/config-to-postgres",
     "headBefore": "ac0b53d35eb40819b22155ff003eaaa9c8cb5fa9",
-    "headAfter": "33d31fe9ddc7cbc4aa625a622d641219b7225db7",
+    "headAfter": "70c50cd6b3a6b24176f7ddf792b3ab16293202fd",
     "commitShas": [
-      "33d31fe9ddc7cbc4aa625a622d641219b7225db7"
+      "70c50cd6b3a6b24176f7ddf792b3ab16293202fd"
     ]
   },
   "summary": "",
